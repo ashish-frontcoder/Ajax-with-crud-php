@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="getBtn">Get Data</button>
+
+    <h1 id="content"></h1>
+
+    <script>
+        let content = document.getElementById("content");
+
+        let getbtn = document.getElementById("getBtn");
+        getbtn.addEventListener("click", runAjax);
+
+        function runAjax()
+        {
+            let xhr = new XMLHttpRequest();
+
+            // console.log(xhr.readyState);
+            
+            xhr.open("GET", "mydata.json", true);
+
+            // console.log(xhr.readyState);
+            
+            xhr.onreadystatechange = function ()
+            {
+                // console.log(xhr.readyState);
+
+                // if(this.readyState==3){
+                //     content.innerText="Processing..";
+                //     console.log("Processing..");
+                // }
+                if(this.readyState==4 && this.status==200) {
+                    // console.log(this.responseText);
+                    let data = JSON.parse(this.responseText)
+                    let el = "";
+
+                    data.forEach(element => {
+                        el+=`
+                        <ul>
+                            <li>${element.user}</li>
+                            <li>${element.age}</li>
+                            <li>${element.subject}</li>
+                        </ul>
+                        `;
+                    });
+                    // let el = `
+                    //     <ul>
+                    //         <li>${data.user}</li>
+                    //         <li>${data.age}</li>
+                    //         <li>${data.subject}</li>
+                    //     </ul>
+                    // `;
+                    content.innerHTML=el;
+                    // content.innerText=this.responseText;
+                }
+                // if(this.readyState==4) 
+                // {
+                //     if(this.status==200) {
+                //         console.log(this.responseText);
+                //         content.innerText=this.responseText;
+                //     }
+                //     else if(this.status==404){
+                //         console.log("page not found");
+                //         content.innerText="page not found";
+                //     }
+                // }
+            }
+
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

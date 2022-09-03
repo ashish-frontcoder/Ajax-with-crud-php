@@ -1,0 +1,17 @@
+[
+    {
+        "user" : "Amit",
+        "age" : 35,
+        "subject" : "Ajax"
+    },
+    {
+        "user" : "Ashish",
+        "age" : 35,
+        "subject" : "Ajax"
+    },
+    {
+        "user" : "Ajay",
+        "age" : 35,
+        "subject" : "Ajax"
+    }
+]
